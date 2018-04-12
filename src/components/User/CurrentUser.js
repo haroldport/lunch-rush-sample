@@ -6,6 +6,7 @@ import './CurrentUser.css';
 const CurrentUser = ({ user }) => {
   return (
     <div className="CurrentUser">
+      { user.displayName }
     </div>
   );
 };
