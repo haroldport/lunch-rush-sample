@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import SignIn from './components/SignIn/SignIn';
 import CurrentUser from './components/User/CurrentUser';
+import NewRestaurant from './components/Restaurant/NewRestaurant';
 import { auth } from './config/firebase';
 
 import './App.css';
@@ -28,7 +29,14 @@ class App extends Component {
         </header>
         <div>
           { !currentUser && <SignIn /> }
-          { currentUser && <CurrentUser user={currentUser} />  }
+          { 
+            currentUser 
+            && 
+            <div>
+              <NewRestaurant />
+              <CurrentUser user={currentUser} />  
+            </div>
+          }
         </div>
       </div>
     );

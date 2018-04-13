@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { database } from '../../config/firebase';
+
 import './NewRestaurant.css';
 
 class NewRestaurant extends Component {
@@ -7,8 +9,14 @@ class NewRestaurant extends Component {
     name: ''
   };
 
+  componentDidMount () {
+    this.restaurantsRef = database.ref('/restaurants');
+  }
+
   handleSubmit = event => {
     event.preventDefault();
+    this.restaurantsRef.push({ name: this.state.name });
+    this.setState({ name: '' });
   };
 
   render() {
