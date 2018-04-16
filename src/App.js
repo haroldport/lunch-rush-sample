@@ -3,24 +3,32 @@ import React, { Component } from 'react';
 import SignIn from './components/SignIn/SignIn';
 import CurrentUser from './components/User/CurrentUser';
 import NewRestaurant from './components/Restaurant/NewRestaurant';
-import { auth } from './config/firebase';
+import Restaurants from './components/Restaurant/Restaurants';
+import { auth, database } from './config/firebase';
 
 import './App.css';
 
 class App extends Component {
 
   state = {
-    currentUser: null
+    currentUser: null,
+    restaurants: null
   };
 
   componentDidMount () {
+    this.restaurantsRef = database.ref('/restaurants');
+
     auth.onAuthStateChanged((currentUser) => {
       this.setState({ currentUser });
+
+      this.restaurantsRef.on('value', (snapshot) => {
+        this.setState({ restaurants: snapshot.val() });
+      });
     });
   }
 
   render() {
-    const { currentUser } = this.state;
+    const { currentUser, restaurants } = this.state;
 
     return (
       <div className="App">
@@ -34,6 +42,7 @@ class App extends Component {
             && 
             <div>
               <NewRestaurant />
+              <Restaurants restaurants={restaurants} user={currentUser} />
               <CurrentUser user={currentUser} />  
             </div>
           }

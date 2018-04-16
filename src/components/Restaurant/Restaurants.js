@@ -1,14 +1,51 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import map from 'lodash/map';
+
+import { database } from '../../config/firebase';
 
 import Restaurant from './Restaurant';
 import './Restaurants.css';
 
 class Restaurants extends Component {
 
+    handleSelect = key => {
+      const { user } = this.props;
+      database.ref('/restaurants')
+              .child(key)
+              .child('votes')
+              .child(user.uid)
+              .set(user.displayName);
+    };
+
+    handleUnselect = key => {
+      const { user } = this.props;
+      database.ref('/restaurants')
+              .child(key)
+              .child('votes')
+              .child(user.uid)
+              .remove();
+    };
+
   render () {
+    const { restaurants, user } = this.props;
+
     return (
       <section className="Restaurants">
+      {
+        map(
+          restaurants, (restaurant, key) => {
+          return(
+            <Restaurant 
+              key={key} 
+              {...restaurant}
+              user={user}
+              handleSelect={() => this.handleSelect(key)}
+              handleUnselect={() => this.handleUnselect(key)}
+            />);
+          }
+        )
+      }
       </section>
     );
   }
@@ -16,7 +53,7 @@ class Restaurants extends Component {
 }
 
 Restaurants.propTypes = {
-  user: PropTypes,
+  user: PropTypes.object,
   restaurantsRef: PropTypes.object,
   restaurants: PropTypes.object
 };
