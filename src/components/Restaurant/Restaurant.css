@@ -13,3 +13,10 @@
 .Restaurant--votes {
   text-align: left;
 }
+
+.Restaurant--images {
+  max-height: 150px;
+  margin-top: 1em;
+  padding: 1.5em;
+  border: 1px solid #ccc;
+}
