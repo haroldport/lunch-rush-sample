@@ -3,12 +3,27 @@ import map from 'lodash/map';
 import PropTypes from 'prop-types';
 import Files from 'react-files';
 
+import { database, storage } from '../../config/firebase';
+
 import './Restaurant.css';
 
 class Restaurant extends Component {
 
   onFilesChange = files => {
-    console.log(files);
+    const { uid, user } = this.props;
+    const file = files[0];
+    const uploadTask = storage.ref('/restaurant-images')
+                              .child(uid)
+                              .child(user.uid)
+                              .child(file.name)
+                              .put(file, { contentType: file.type });
+  
+    uploadTask.then((snapshot) => {
+      database.ref('/restaurants')
+              .child(uid)
+              .child('imageUrl')
+              .set(snapshot.downloadURL);
+    });
   };
 
   onFilesError = (error, file) => {
@@ -16,7 +31,7 @@ class Restaurant extends Component {
   };
 
   render() {
-    const { name, votes, user, handleSelect, handleUnselect } = this.props;
+    const { name, votes, user, handleSelect, handleUnselect, imageUrl } = this.props;
     const userHasSelected = votes && Object.keys(votes).includes(user.uid);
 
     return (
@@ -45,7 +60,8 @@ class Restaurant extends Component {
             minFileSize={0}
             clickable
           >
-            Drop files here or click to upload
+            { imageUrl && <img src={imageUrl} alt={name} /> }
+            <div>Drop files here or click to upload</div>
           </Files>
         </div>
       </article>

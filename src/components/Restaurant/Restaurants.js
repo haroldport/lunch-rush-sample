@@ -39,6 +39,7 @@ class Restaurants extends Component {
             <Restaurant 
               key={key} 
               {...restaurant}
+              uid={key}
               user={user}
               handleSelect={() => this.handleSelect(key)}
               handleUnselect={() => this.handleUnselect(key)}
