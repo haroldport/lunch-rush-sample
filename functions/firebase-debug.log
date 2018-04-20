@@ -1,0 +1,101 @@
+[debug] [2018-04-20T21:21:43.506Z] ----------------------------------------------------------------------
+[debug] [2018-04-20T21:21:43.509Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\hportocarrero\AppData\Local\Yarn\config\global\node_modules\firebase-tools\bin\firebase deploy --only functions
+[debug] [2018-04-20T21:21:43.509Z] CLI Version:   3.18.4
+[debug] [2018-04-20T21:21:43.509Z] Platform:      win32
+[debug] [2018-04-20T21:21:43.509Z] Node Version:  v9.2.0
+[debug] [2018-04-20T21:21:43.511Z] Time:          Fri Apr 20 2018 16:21:43 GMT-0500 (SA Pacific Standard Time)
+[debug] [2018-04-20T21:21:43.511Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-04-20T21:21:43.536Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-04-20T21:21:43.538Z] > authorizing via signed-in user
+[debug] [2018-04-20T21:21:43.540Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/lunch-rush-sample  
+  
+ Fri Apr 20 2018 16:21:43 GMT-0500 (SA Pacific Standard Time)
+[debug] [2018-04-20T21:21:44.275Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-20T21:21:44.285Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/lunch-rush-sample/tokens  
+  
+ Fri Apr 20 2018 16:21:44 GMT-0500 (SA Pacific Standard Time)
+[debug] [2018-04-20T21:21:44.907Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'lunch-rush-sample'...
+[info] 
+[info] i  deploying functions
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] +  functions: Finished running predeploy script.
+[debug] [2018-04-20T21:22:05.774Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase serve --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "dependencies": {
+    "firebase-admin": "~5.12.0",
+    "firebase-functions": "^1.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.12.0",
+    "eslint-plugin-promise": "^3.6.0"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2018-04-20T21:22:05.776Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/lunch-rush-sample?view=CONSUMER_VIEW  
+  
+ Fri Apr 20 2018 16:22:05 GMT-0500 (SA Pacific Standard Time)
+[debug] [2018-04-20T21:22:05.777Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/lunch-rush-sample?view=CONSUMER_VIEW  
+  
+ Fri Apr 20 2018 16:22:05 GMT-0500 (SA Pacific Standard Time)
+[debug] [2018-04-20T21:22:06.658Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-20T21:22:07.119Z] <<< HTTP RESPONSE 200
+[info] +  functions: all necessary APIs are enabled
+[debug] [2018-04-20T21:22:07.121Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/lunch-rush-sample  
+  
+ Fri Apr 20 2018 16:22:07 GMT-0500 (SA Pacific Standard Time)
+[debug] [2018-04-20T21:22:07.624Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-20T21:22:07.624Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/502309617282:getServerAppConfig  
+  
+ Fri Apr 20 2018 16:22:07 GMT-0500 (SA Pacific Standard Time)
+[debug] [2018-04-20T21:22:08.256Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2018-04-20T21:22:08.256Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/lunch-rush-sample/configs  
+  
+ Fri Apr 20 2018 16:22:08 GMT-0500 (SA Pacific Standard Time)
+[debug] [2018-04-20T21:22:08.694Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (39.31 KB) for uploading
+[debug] [2018-04-20T21:22:09.852Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/lunch-rush-sample/locations/us-central1/functions:generateUploadUrl  
+  
+ Fri Apr 20 2018 16:22:09 GMT-0500 (SA Pacific Standard Time)
+[debug] [2018-04-20T21:22:40.509Z] <<< HTTP RESPONSE 503
+[debug] [2018-04-20T21:22:40.509Z] <<< HTTP RESPONSE BODY {
+  "error": {
+    "code": 503,
+    "message": "The service is currently unavailable.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+[debug] [2018-04-20T21:22:40.511Z] TypeError: Cannot create property 'error' on string '{
+  "error": {
+    "code": 503,
+    "message": "The service is currently unavailable.",
+    "status": "UNAVAILABLE"
+  }
+}
+'
+    at module.exports (C:\Users\hportocarrero\AppData\Local\Yarn\config\global\node_modules\firebase-tools\lib\responseToError.js:11:16)
+    at Request._callback (C:\Users\hportocarrero\AppData\Local\Yarn\config\global\node_modules\firebase-tools\lib\api.js:47:25)
+    at Request.self.callback (C:\Users\hportocarrero\AppData\Local\Yarn\config\global\node_modules\request\request.js:186:22)
+    at Request.emit (events.js:159:13)
+    at Request.<anonymous> (C:\Users\hportocarrero\AppData\Local\Yarn\config\global\node_modules\request\request.js:1163:10)
+    at Request.emit (events.js:159:13)
+    at IncomingMessage.<anonymous> (C:\Users\hportocarrero\AppData\Local\Yarn\config\global\node_modules\request\request.js:1085:12)
+    at Object.onceWrapper (events.js:254:19)
+    at IncomingMessage.emit (events.js:164:20)
+    at endReadableNT (_stream_readable.js:1054:12)
+[error] 
+[error] Error: An unexpected error has occurred.
