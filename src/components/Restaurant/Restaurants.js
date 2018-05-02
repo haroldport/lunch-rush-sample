@@ -16,7 +16,7 @@ class Restaurants extends Component {
 }
 
 Restaurants.propTypes = {
-  user: PropTypes,
+  user: PropTypes.object,
   restaurantsRef: PropTypes.object,
   restaurants: PropTypes.object
 };
